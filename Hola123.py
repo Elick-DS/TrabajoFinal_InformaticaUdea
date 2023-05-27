@@ -71,7 +71,7 @@ def ingresar_equipo_automatico():
     print("Ingresar equipo de forma automática")
     equipos_csv = cargar_equipos_desde_csv()
     for equipo_csv in equipos_csv:
-        equipo_obj = Equipo.from_csv(equipo_csv)
+        equipo_obj = equipo.from_csv(equipo_csv)
         agregar_equipo(equipo_obj)
     print("Equipos agregados exitosamente.")
 
