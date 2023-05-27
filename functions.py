@@ -50,4 +50,36 @@ def menu_principal():
         else:
             print("Error, ingrese una opción válida.")
 
+
+def menu_equipos():
+    while True:
+        print("Menú equipos")
+        print("1. Ingresar un nuevo equipo en forma manual")
+        print("2. Ingresar un nuevo equipo en forma automática")
+        print("3. Actualizar la información de un equipo (por número de activo)")
+        print("4. Buscar un equipo (por número de activo)")
+        print("5. Ver la información de todos los equipos almacenados")
+        print("6. Eliminar un equipo (por número de activo)")
+        print("7. Volver al menú principal")
+
+        opcion = input("Selecciona una opción: ")
+
+        if opcion == "1":
+            ingresar_equipo_manual()
+        elif opcion == "2":
+            ingresar_equipo_automatico()
+        elif opcion == "3":
+            actualizar_equipo()
+        elif opcion == "4":
+            buscar_equipo()
+        elif opcion == "5":
+            mostrar_equipos()
+        elif opcion == "6":
+            eliminar_equipo()
+        elif opcion == "7":
+            break
+        else:
+            print("Error, ingrese una opción válida")
+
+
     
