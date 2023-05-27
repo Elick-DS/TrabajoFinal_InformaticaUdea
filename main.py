@@ -1,4 +1,3 @@
 while True:
     print("Programa")
-    HOLA
-    
+     for i 
