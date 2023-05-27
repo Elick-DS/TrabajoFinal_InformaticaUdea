@@ -1,3 +1,3 @@
-from functions import ingresar_equipo
+from functions import ingresar_equipo_manual
 
-ingresar_equipo()
+ingresar_equipo_manual()

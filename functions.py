@@ -1,4 +1,4 @@
-def ingresar_equipo():
+def ingresar_equipo_manual():
     while True:
         serial = input("Ingrese el número de serie: ")
         if serial.strip() and serial.isalnum() and len(serial) == 10:
