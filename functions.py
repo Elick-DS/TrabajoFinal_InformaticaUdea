@@ -17,8 +17,20 @@ def ingresar_equipo():
             break
         else:
             print("El nombre de equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
-    marca = input("Ingrese la marca del equipo: ")
-    codigo_ubicacion = int(input("Ingrese el código de ubicación del equipo: "))
+    while True:
+        marca = input("Ingrese la marca del equipo: ")
+        if marca.strip() and marca.isalpha():
+            break
+        else:
+            print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
+    while True:
+        bloque = input("Ingrese el bloque en el que se encuentra el dispositivo: ")
+        piso = input("Ingresa el piso en el que se encuentra el dispositivo: ")
+        bp = f"B{bloque} - P{piso}"
+        if bp.strip() and bp.isnumeric():
+            break
+        else:
+            print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
     codigo_responsable = int(input("Ingrese el código del responsable del equipo: "))
 
 def ingresar_responsable():
