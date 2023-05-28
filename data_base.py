@@ -1,7 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 #from functions import ingresar_equipo_manual
-from pprint import pprint
 
 uri = "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
 
@@ -33,7 +32,7 @@ def ingresar_equipo_manual():
         else:
             print("El número de activo no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")
     while True:
-        nombre_equipo = input("Ingrese el número de equipo: ")
+        nombre_equipo = input("Ingrese el nombre del equipo: ")
         if nombre_equipo.strip() and nombre_equipo.isalpha():
             break
         else:
@@ -44,14 +43,14 @@ def ingresar_equipo_manual():
             break
         else:
             print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
-    #while True:
-    #    bloque = input("Ingrese el bloque en el que se encuentra el dispositivo: ")
-    #    piso = input("Ingresa el piso en el que se encuentra el dispositivo: ")
-    #    bp = f"B{bloque} - P{piso}"
-    #    if bp.strip() and bp.isalnum():
-    #        break
-    #    else:
-    #        print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
+    while True:
+        bloque = input("Ingrese el bloque en el que se encuentra el dispositivo: ")
+        piso = input("Ingresa el piso en el que se encuentra el dispositivo: ")
+        bp = f"B{bloque}P{piso}"
+        if bp.strip() and bp.isalnum():
+            break
+        else:
+            print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
     while True:
         codigo_responsable = input("Ingrese el código del responsable del equipo: ")
         a = len(serial)
@@ -59,7 +58,7 @@ def ingresar_equipo_manual():
             break
         else:
             print("El código del responsable no puede estar vacío, no puede contener caracteres especiales y no puede tener menos de 4 carácteres o más de 6. Inténtelo nuevamente.")
-    nuevo_equipo = {"serial": serial,"numero_activo": numero_activo,"nombre_equipo": nombre_equipo,"marca": marca,"codigo_responsable": codigo_responsable}
+    nuevo_equipo = {"serial": serial,"numero_activo": numero_activo,"nombre_equipo": nombre_equipo,"marca": marca,"ubicacion":bp,"codigo_responsable": codigo_responsable}
 
     x=mycol.insert_one(nuevo_equipo)
     print(x.inserted_id)
@@ -73,6 +72,8 @@ def buscar_equipo():
               f"| Numero activo      | {y['numero_activo']:<10}          |\n"
               f"|------------------------------------------|\n"
               f"| Nombre equipo      | {y['nombre_equipo']:<10}          |\n"
+              f"|------------------------------------------|\n"
+              f"| Ubicación          | {y['ubicacion']:<10}          |\n"
               f"|------------------------------------------|\n"
               f"| Marca              | {y['marca']:<10}          |\n" 
               f"|------------------------------------------|\n"
