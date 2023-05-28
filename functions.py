@@ -41,9 +41,9 @@ def menu_principal():
         if opcion == "1":
             menu_equipos()
         elif opcion == "2":
-            menu_responsables()
+            ingresar_responsable()
         elif opcion == "3":
-            menu_ubicaciones()
+            ingresar_ubicacion()
         elif opcion == "4":
             print("¡Gracias por utilizar el sistema!")
             break
