@@ -15,7 +15,7 @@ except Exception as e:
     print(e)
 
 mydb = client["informatica1"]
-mycol = mydb["coleccioninfo1"]
+mycol = mydb["Equipos"]
 
 
 def ingresar_equipo_manual():
@@ -65,6 +65,3 @@ def ingresar_equipo_manual():
 
 
 
-#newvalues = 
- 
-#mycol.update_one(myquery, newvalues)      
