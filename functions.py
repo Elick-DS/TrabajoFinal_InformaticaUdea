@@ -1,4 +1,4 @@
-from data_base import ingresar_equipo_manual
+from data_base import ingresar_equipo_manual, buscar_equipo
 
 def ingresar_responsable():
     while True:

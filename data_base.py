@@ -1,6 +1,7 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 #from functions import ingresar_equipo_manual
+from pprint import pprint
 
 uri = "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
 
@@ -62,6 +63,23 @@ def ingresar_equipo_manual():
 
     x=mycol.insert_one(nuevo_equipo)
     print(x.inserted_id)
+
+def buscar_equipo():
+    code = input("Ingresa el número de activo: ")
+    for y in mycol.find({'numero_activo': code}):
+        print(f"+------------------------------------------+\n"
+              f"| Serial             | {y['serial']:<10}          |\n"
+              f"|------------------------------------------|\n"
+              f"| Numero activo      | {y['numero_activo']:<10}          |\n"
+              f"|------------------------------------------|\n"
+              f"| Nombre equipo      | {y['nombre_equipo']:<10}          |\n"
+              f"|------------------------------------------|\n"
+              f"| Marca              | {y['marca']:<10}          |\n" 
+              f"|------------------------------------------|\n"
+              f"| Codigo responsable | {y['codigo_responsable']:<10}          |\n"
+              f"|------------------------------------------|\n")
+
+            
 
 
 
