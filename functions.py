@@ -1,19 +1,36 @@
-def ingresar_equipo():
+def ingresar_equipo_manual():
     while True:
         serial = input("Ingrese el número de serie: ")
         if serial.strip() and serial.isalnum() and len(serial) == 10:
             break
         else:
-            print("El número de serie no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")
+            print("El número de serie no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 10 caracteres. Inténtelo nuevamente.")
     while True:
-        numero_activo = input("Ingrese el número de serie: ")
+        numero_activo = input("Ingrese el número de activo: ")
         if numero_activo.strip() and numero_activo.isnumeric() and len(numero_activo) == 4:
             break
         else:
-            print("El número de serie no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")
-    nombre_equipo = input("Ingrese el nombre del equipo: ")
-    marca = input("Ingrese la marca del equipo: ")
-    codigo_ubicacion = int(input("Ingrese el código de ubicación del equipo: "))
+            print("El número de activo no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")
+    while True:
+        nombre_equipo = input("Ingrese el número de equipo: ")
+        if nombre_equipo.strip() and nombre_equipo.isalpha():
+            break
+        else:
+            print("El nombre de equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
+    while True:
+        marca = input("Ingrese la marca del equipo: ")
+        if marca.strip() and marca.isalpha():
+            break
+        else:
+            print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
+    while True:
+        bloque = input("Ingrese el bloque en el que se encuentra el dispositivo: ")
+        piso = input("Ingresa el piso en el que se encuentra el dispositivo: ")
+        bp = f"B{bloque} - P{piso}"
+        if bp.strip() and bp.isnumeric():
+            break
+        else:
+            print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
     codigo_responsable = int(input("Ingrese el código del responsable del equipo: "))
 
 def ingresar_responsable():
