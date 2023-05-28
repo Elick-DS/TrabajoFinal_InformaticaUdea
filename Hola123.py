@@ -1,3 +1,33 @@
+import pymongo
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+uri = "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
+
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+mydb = client["informatica1"]
+mycol = mydb["coleccioninfo1"]
+
+# x=mycol.insert_one(mydict)
+#print(x.inserted_id)
+
+#for x in mycol.find({  "direccion": 1}):
+      #print(x["nombre"],x["direccion"])
+
+#myquery = {"nombre: "}
+#newvalues = 
+# 
+# mycol.update_one(myquery, newvalues)      
+
 
 def menu_principal():
     while True:
