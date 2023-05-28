@@ -1,3 +1,4 @@
-from functions import ingresar_equipo_manual, ingresar_responsable, menu_principal
+from functions import  menu_principal
+#rom data_base import ingresar_equipo_manual
 
 menu_principal()
