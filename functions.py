@@ -31,11 +31,28 @@ def ingresar_equipo_manual():
             break
         else:
             print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
-    codigo_responsable = int(input("Ingrese el código del responsable del equipo: "))
+    while True:
+        codigo_responsable = int(input("Ingrese el código del responsable del equipo: "))
+        a = len(serial)
+        if codigo_responsable.strip() and codigo_responsable.isnumeric() and (a <= 6 and a >= 4) :
+            break
+        else:
+            print("El código del responsable no puede estar vacío, no puede contener caracteres especiales y no puede tener menos de 4 carácteres o más de 6. Inténtelo nuevamente.")
 
 def ingresar_responsable():
-    codigo_responsable = int(input("Ingrese el código del responsable: "))
-    nombre = input("Ingrese el nombre del responsable: ")
+    while True:
+        codigo_responsable = input("Crea el código del responsable del equipo (Debe tener entre 4 y 6 caracteres, sólo números): ")
+        a = len(codigo_responsable)
+        if codigo_responsable.strip() and codigo_responsable.isnumeric() and (a <= 6 and a >= 4) :
+            break
+        else:
+            print("El código del responsable no puede estar vacío, no puede contener caracteres especiales y no puede tener menos de 4 carácteres o más de 6. Inténtelo nuevamente.")
+    while True:
+        nombre = input("Ingrese el nombre del responsable: ")
+        if nombre.strip() and nombre.isalpha():
+            break
+        else:
+            print("El nombre del responsable no puede estar vacío y no puede contener caracteres especiales. Inténtelo nuevamente.")
     apellido = input("Ingrese el apellido del responsable: ")
     num_documento = int(input("Ingrese el número del documento de identidad: "))
     cargo = input("Ingrese el cargo del responsable: ")

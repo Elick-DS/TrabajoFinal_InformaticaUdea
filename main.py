@@ -1,3 +1,3 @@
-from functions import ingresar_equipo_manual
+from functions import ingresar_equipo_manual, ingresar_responsable, menu_principal
 
-ingresar_equipo_manual()
+menu_principal()
