@@ -1,4 +1,5 @@
 from data_base import ingresar_equipo_manual, buscar_equipo,eliminar_equipo, actualizar_equipo, ingresar_equipos_automaticamente
+from account import gestionar_responsables
 
 def ingresar_ubicacion():
     codigo_ubicacion = int(input("Ingrese el código de ubicación: "))
@@ -18,7 +19,7 @@ def menu_principal():
         if opcion == "1":
             menu_equipos()
         elif opcion == "2":
-            ingresar_responsable()
+            gestionar_responsables()
         elif opcion == "3":
             ingresar_ubicacion()
         elif opcion == "4":
