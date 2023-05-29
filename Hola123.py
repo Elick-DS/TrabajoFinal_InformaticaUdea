@@ -1,16 +1,44 @@
+import csv
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
 
-# import csv
 
-# def ingreso_automatico_equipos():
-#     archivo_csv = input("Aqui va el nombre del archivo CSV:")
-    
-#     with open("InventarioIPS.csv", 'r') as csvfile:
-#         equipos_csv = csv.DictReader(csvfile)
-#         for equipo in equipos_csv:
-#             mycol.insert_one(equipo)
-    
-#     print("Ingreso satisfactorio.")
+uri= "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
+
+def ingresar_equipos_automaticamente():
+    print("Ingresar Equipos Automáticamente")
+    archivo_csv = "InventarioIPS.csv"
+
+    try:
+       
+        client = MongoClient(uri, server_api=ServerApi('1'))
+        db = client.informatica1
+
+        Equipos_collection = db.equipos
+
+        with open(archivo_csv, newline='') as archivo:
+            reader = csv.DictReader(archivo)
+
+            for row in reader:
+                equipo = {
+                    "Serial": row["Serial"],
+                    "Número de activo": int(row["Número de activo"]),
+                    "Nombre del equipo": row["Nombre del equipo"],
+                    "Marca": row["Marca"],
+                    "Código de ubicación": int(row["Código de ubicación"]),
+                    "Código responsable": int(row["Código responsable"])
+                }
+
+                Equipos_collection.insert_one(equipo)
+
+            print("Se han ingresado correctamente los equipos de forma automatica.")
+    except FileNotFoundError:
+        print("El archivo CSV no existe.")
+    except Exception as e:
+        print(f"Error al ingresar equipos de forma automatica: {str(e)}")
+
+
 
 # def actualizar_equipo():
 #      numero_activo = input("Ingrese el número de activo del equipo a actualizar: ")
@@ -101,6 +129,25 @@
 #      print("4. Ver información de todas las ubicaciones")
 #      print("5. Eliminar una ubicación")
 #      print("6. Volver al menú principal")
+    
+#      opcion = input("Selecciona una opción: ")
+
+#      if opcion == "1":
+#             ingresar_nueva_ubicacion()
+#      elif opcion == "2":
+#             actualizar_ubicacion()
+#      elif opcion == "3":
+#             buscar_ubicacion()
+#      elif opcion == "4":
+#             ver_informacion_todasubicaciones()
+#      elif opcion == "5":
+#             eliminar_ubicacion()
+#      elif opcion == "6":
+#             print("¡Gracias por utilizar el sistema!")
+#             break
+#      else:
+#             print("Error, ingrese una opción válida.")
+
 
 
 
