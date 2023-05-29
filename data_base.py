@@ -1,6 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-#from functions import ingresar_equipo_manual
+#from functions import input_no_vacio
 
 uri = "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
 
@@ -30,7 +30,7 @@ def ingresar_equipo_manual():
         if numero_activo.strip() and numero_activo.isnumeric() and len(numero_activo) == 4:
             break
         else:
-            print("El número de activo no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")
+            print("El número de activo no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")    
     while True:
         nombre_equipo = input("Ingrese el nombre del equipo: ")
         if nombre_equipo.strip() and nombre_equipo.isalpha():
@@ -79,6 +79,19 @@ def buscar_equipo():
               f"|------------------------------------------|\n"
               f"| Codigo responsable | {y['codigo_responsable']:<10}          |\n"
               f"|------------------------------------------|\n")
+
+def eliminar_equipo():
+    while True:
+        numero_activo = input("Ingrese el número de activo: ")
+        if numero_activo.strip() and numero_activo.isnumeric() and len(numero_activo) == 4:
+            break
+        else:
+            print("El número de activo no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")
+    delete_result = mycol.delete_many({"numero_activo": numero_activo})
+    print(f"Se eliminaron {delete_result.deleted_count} documentos con el número de activo {numero_activo}.")
+
+
+
 
             
 

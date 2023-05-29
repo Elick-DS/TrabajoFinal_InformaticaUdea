@@ -1,4 +1,4 @@
-from data_base import ingresar_equipo_manual, buscar_equipo
+from data_base import ingresar_equipo_manual, buscar_equipo,eliminar_equipo
 
 def ingresar_responsable():
     while True:
@@ -75,6 +75,8 @@ def menu_equipos():
             break
         else:
             print("Error, ingrese una opción válida")
+
+
 
 
     
