@@ -1,4 +1,4 @@
-from data_base import ingresar_equipo_manual, buscar_equipo,eliminar_equipo, actualizar_equipo, ingresar_equipos_automaticamente
+from data_base import ingresar_equipo_manual, buscar_equipo,eliminar_equipo, actualizar_equipo, ingresar_equipos_automaticamente, ver_equipos
 from account import gestionar_responsables
 
 def ingresar_ubicacion():
@@ -50,8 +50,8 @@ def menu_equipos():
             actualizar_equipo()
         elif opcion == "4":
             buscar_equipo()
-        #elif opcion == "5":
-            #mostrar_equipos()
+        elif opcion == "5":
+            ver_equipos()
         elif opcion == "6":
             eliminar_equipo()
         elif opcion == "7":

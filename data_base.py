@@ -124,6 +124,60 @@ def ingresar_equipos_automaticamente():
     except Exception as e:
         print(f"Error al ingresar equipos de forma automatica: {str(e)}")
 
+def actualizar_equipo():
+     numero_activo = input("Ingrese el número de activo del equipo a actualizar: ")
+ 
+     equipo = mycol.find_one({"numero_activo": numero_activo})
+     if equipo:
+         nuevo_nombre = input("Ingrese el nuevo nombre del equipo: ")
+         nuevo_marca = input("Ingrese la nueva marca: ")
+         while True:
+            bloque = input("Ingrese el bloque en el que se encuentra el dispositivo: ")
+            piso = input("Ingresa el piso en el que se encuentra el dispositivo: ")
+            nuevo_bp = f"B{bloque}P{piso}"
+            if nuevo_bp.strip() and nuevo_bp.isalnum():
+                break
+            else:
+                print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
+         nuevo_codigo_responsable = input("Ingrese el nuevo código de responsable: ")
+     
+         nuevo_equipo = {
+            "$set": {
+                "nombre": nuevo_nombre,
+                "marca": nuevo_marca,
+                "codigo_ubicacion": nuevo_bp,
+                "codigo_responsable": nuevo_codigo_responsable
+            }
+        }
+     
+         mycol.update_one({"numero_activo": numero_activo}, nuevo_equipo)
+         print("Equipo actualizado satisfactoriamente.")
+     else:
+         print("No se encontro el equipo.")
+
+
+def ver_equipos():
+    print("----- Ver Equipos -----")
+
+    try:
+        client = MongoClient(uri, server_api=ServerApi('1'))
+        db = client.informatica1
+        Equipos_collection = db.Equipos
+
+        Equipos = Equipos_collection.find()
+
+        for Equipo in Equipos:
+            print("---")
+            print("Serial:", Equipo["Serial"])
+            print("Número de activo:", Equipo["Número de activo"])
+            print("Nombre del equipo:", Equipo["Nombre del equipo"])
+            print("Marca:", Equipo["Marca"])
+            print("Código de ubicación:", Equipo["Código de ubicación"])
+            print("Código responsable:", Equipo["Código responsable"])
+
+    except Exception as e:
+        print(f"Error al ver los equipos: {str(e)}")
+
 
 
 
