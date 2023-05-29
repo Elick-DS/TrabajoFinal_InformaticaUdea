@@ -1,4 +1,4 @@
-from data_base import ingresar_equipo_manual, buscar_equipo,eliminar_equipo
+from data_base import ingresar_equipo_manual, buscar_equipo,eliminar_equipo, actualizar_equipo, ingreso_automatico_equipos
 
 def ingresar_responsable():
     while True:
@@ -62,7 +62,7 @@ def menu_equipos():
         if opcion == "1":
             ingresar_equipo_manual()
         elif opcion == "2":
-            ingresar_equipo_automatico()
+            ingreso_automatico_equipos()
         elif opcion == "3":
             actualizar_equipo()
         elif opcion == "4":
