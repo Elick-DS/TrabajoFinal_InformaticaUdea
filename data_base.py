@@ -91,8 +91,37 @@ def eliminar_equipo():
     print(f"Se eliminaron {delete_result.deleted_count} documentos con el número de activo {numero_activo}.")
 
 
+def ingresar_equipos_automaticamente():
+    print("Ingresar Equipos Automáticamente")
+    archivo_csv = "InventarioIPS.csv"
 
+    try:
+       
+        client = MongoClient(uri, server_api=ServerApi('1'))
+        db = client.informatica1
 
+        Equipos_collection = db.equipos
+
+        with open(archivo_csv, newline='') as archivo:
+            reader = csv.DictReader(archivo)
+
+            for row in reader:
+                equipo = {
+                    "Serial": row["Serial"],
+                    "Número de activo": int(row["Número de activo"]),
+                    "Nombre del equipo": row["Nombre del equipo"],
+                    "Marca": row["Marca"],
+                    "Código de ubicación": int(row["Código de ubicación"]),
+                    "Código responsable": int(row["Código responsable"])
+                }
+
+                Equipos_collection.insert_one(equipo)
+
+            print("Se han ingresado correctamente los equipos de forma automatica.")
+    except FileNotFoundError:
+        print("El archivo CSV no existe.")
+    except Exception as e:
+        print(f"Error al ingresar equipos de forma automatica: {str(e)}")
 
 
 
