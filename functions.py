@@ -1,4 +1,4 @@
-from data_base import ingresar_equipo_manual, buscar_equipo,eliminar_equipo, actualizar_equipo, ingreso_automatico_equipos
+from data_base import ingresar_equipo_manual, buscar_equipo,eliminar_equipo, actualizar_equipo, ingresar_equipos_automaticamente
 
 def ingresar_responsable():
     while True:
@@ -62,19 +62,78 @@ def menu_equipos():
         if opcion == "1":
             ingresar_equipo_manual()
         elif opcion == "2":
-            ingreso_automatico_equipos()
+            ingresar_equipos_automaticamente()
         elif opcion == "3":
             actualizar_equipo()
         elif opcion == "4":
             buscar_equipo()
-        elif opcion == "5":
-            mostrar_equipos()
+        #elif opcion == "5":
+            #mostrar_equipos()
         elif opcion == "6":
             eliminar_equipo()
         elif opcion == "7":
             break
         else:
             print("Error, ingrese una opción válida")
+
+
+# def gestionar_responsables():
+#     while True:
+#         print("Menú Responsables")
+#         print("1. Ingresar nuevo responsable")
+#         print("2. Actualizar información de un responsable")
+#         print("3. Buscar un responsable")
+#         print("4. Ver información de todos los responsables")
+#         print("5. Eliminar un responsable")
+#         print("6. Volver al menú principal")
+    
+#         opcion = input("Selecciona una opción: ")
+
+#         if opcion == "1":
+#             ingresar_nuevo_responsable()
+#         elif opcion == "2":
+#             actualizar_responsable()
+#         elif opcion == "3":
+#             buscar_responsable()
+#         elif opcion == "4":
+#             ver_informacion_todosresponsables()
+#         elif opcion == "5":
+#             eliminar_responsable()
+#         elif opcion == "6":
+#             print("¡Gracias por utilizar el sistema!")
+#             break
+#         else:
+#             print("Error, ingrese una opción válida.")
+
+
+
+# def gestionar_ubicaciones():
+#     while True:
+#      print("Menú Ubicaciones")
+#      print("1. Ingresar nueva ubicación")
+#      print("2. Actualizar información de una ubicación")
+#      print("3. Buscar una ubicación")
+#      print("4. Ver información de todas las ubicaciones")
+#      print("5. Eliminar una ubicación")
+#      print("6. Volver al menú principal")
+    
+#      opcion = input("Selecciona una opción: ")
+
+#      if opcion == "1":
+#             ingresar_nueva_ubicacion()
+#      elif opcion == "2":
+#             actualizar_ubicacion()
+#      elif opcion == "3":
+#             buscar_ubicacion()
+#      elif opcion == "4":
+#             ver_informacion_todasubicaciones()
+#      elif opcion == "5":
+#             eliminar_ubicacion()
+#      elif opcion == "6":
+#             print("¡Gracias por utilizar el sistema!")
+#             break
+#      else:
+#             print("Error, ingrese una opción válida.")
 
 
 
