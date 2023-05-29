@@ -1,5 +1,6 @@
 from functions import  menu_principal
 from data_base import ingresar_equipo_manual
+from account import ingresar_responsable
 
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -23,15 +24,23 @@ myres = mydb["responsables"]
 print("BIENVENIDO A NUESTRO SISTEMA DE CONTROL DE INVENTARIOS MÉDICOS")
 
 while True:
-    opcion = input("1.Inciar sesión\n2.Crearse una cuenta")
-    if opcion.isnumeric() and opcion == 1 or opcion == 2:
+    opcion = input("1.Inciar sesión\n2.Crearse una cuenta\nOpción:")
+    if opcion.isnumeric() and opcion == "1":
+        break
+    elif opcion.isnumeric() and opcion == "2":
         break
     else:
         print("Ingresa una opción correcta")
 
-if opcion == 1:
-        code = input("Ingresa el número de activo: ")
-        for y in myres.find({'numero_activo': code}):
-             print(f"Usuario {y['nombre']}")
+if opcion == "1":
+    code = input("Ingresa el número de activo: ")
+    for y in myres.find({'numero_activo': code}):
+        print(f"Usuario {y['nombre']}")
+        menu_principal()
+        break
 
-menu_principal()
+elif opcion == "2":
+     ingresar_responsable()
+     
+
+

@@ -39,39 +39,6 @@
 
 
 
-# def actualizar_equipo():
-#      numero_activo = input("Ingrese el número de activo del equipo a actualizar: ")
-   
-#      equipo = mycol.find_one({"numero_activo": numero_activo})
-#      if equipo:
-#          nuevo_nombre = input("Ingrese el nuevo nombre del equipo: ")
-#          nuevo_marca = input("Ingrese la nueva marca: ")
-#          while True:
-#             bloque = input("Ingrese el bloque en el que se encuentra el dispositivo: ")
-#             piso = input("Ingresa el piso en el que se encuentra el dispositivo: ")
-#             nuevo_bp = f"B{bloque}P{piso}"
-#             if nuevo_bp.strip() and nuevo_bp.isalnum():
-#                 break
-#             else:
-#                 print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
-#          nuevo_codigo_responsable = input("Ingrese el nuevo código de responsable: ")
-       
-#          nuevo_equipo = {
-#             "$set": {
-#                 "nombre": nuevo_nombre,
-#                 "marca": nuevo_marca,
-#                 "codigo_ubicacion": nuevo_bp,
-#                 "codigo_responsable": nuevo_codigo_responsable
-#             }
-#         }
-       
-#          mycol.update_one({"numero_activo": numero_activo}, nuevo_equipo)
-#          print("Equipo actualizado satisfactoriamente.")
-#      else:
-#          print("No se encontro el equipo.")
-
-
-
 
 # def ver_equipos():
 #     equipos = mycol.find()
