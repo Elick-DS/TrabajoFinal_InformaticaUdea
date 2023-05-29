@@ -32,6 +32,6 @@ while True:
 if opcion == 1:
         code = input("Ingresa el número de activo: ")
         for y in myres.find({'numero_activo': code}):
-             print(f"Usuario {y['']}")
+             print(f"Usuario {y['nombre']}")
 
 menu_principal()
