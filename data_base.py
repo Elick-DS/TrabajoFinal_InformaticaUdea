@@ -90,6 +90,7 @@ def eliminar_equipo():
             print("El número de activo no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")
     delete_result = mycol.delete_many({"numero_activo": numero_activo})
     print(f"Se eliminaron {delete_result.deleted_count} documentos con el número de activo {numero_activo}.")
+    
 
 def ingresar_equipos_automaticamente():
     print("Ingresar Equipos Automáticamente")
