@@ -90,40 +90,45 @@ def eliminar_equipo():
             print("El número de activo no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")
     delete_result = mycol.delete_many({"numero_activo": numero_activo})
     print(f"Se eliminaron {delete_result.deleted_count} documentos con el número de activo {numero_activo}.")
-    
+
+
 
 def ingresar_equipos_automaticamente():
     print("Ingresar Equipos Automáticamente")
     archivo_csv = "InventarioIPS.csv"
 
     try:
-       
+        
         client = MongoClient(uri, server_api=ServerApi('1'))
         db = client.informatica1
-
-        Equipos_collection = db.equipos
+        equipos_collection = db.equipos
 
         with open(archivo_csv, newline='') as archivo:
-            reader = csv.DictReader(archivo)
+            reader = csv.DictReader(archivo, delimiter=';')
 
-            for row in reader:
-                equipo = {
-                    "Serial": row["Serial"],
-                    "Número de activo": int(row["Número de activo"]),
-                    "Nombre del equipo": row["Nombre del equipo"],
-                    "Marca": row["Marca"],
-                    "Código de ubicación": int(row["Código de ubicación"]),
-                    "Código responsable": int(row["Código responsable"])
-                }
+            # Leer una sola línea del archivo CSV
+            equipo = next(reader)
 
-                Equipos_collection.insert_one(equipo)
+            equipo_doc = {
+                "Serial": equipo["Serial"],
+                "Número de activo": int(equipo["Numero activo"]),
+                "Nombre del equipo": equipo["Nombre equipo"],
+                "Marca": equipo["Marca"],
+                "Código de ubicación": (equipo["Ubicación"]),
+                "Código responsable": int(equipo["Codigo responsable"])
+            }
 
-            print("Se han ingresado correctamente los equipos de forma automatica.")
+            # Insertar el equipo en la colección de equipos
+            equipos_collection.insert_one(equipo_doc)
+
+            print(f"Se ha ingresado el equipo de forma automatica: {equipo['Nombre equipo']}")
+
     except FileNotFoundError:
         print("El archivo CSV no existe.")
+    except StopIteration:
+        print("No hay más equipos para ingresar automáticamente.")
     except Exception as e:
-        print(f"Error al ingresar equipos de forma automatica: {str(e)}")
-
+        print(f"Error al ingresar equipo automáticamente: {str(e)}")
 
 
 def actualizar_equipo():
