@@ -1,42 +1,41 @@
+
 # import csv
-# from pymongo.mongo_client import MongoClient
-# from pymongo.server_api import ServerApi
-
-
-
-# uri= "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
-
 # def ingresar_equipos_automaticamente():
-#     print("Ingresar Equipos Automáticamente")
+#     print("----- Ingresar Equipos Automáticamente -----")
 #     archivo_csv = "InventarioIPS.csv"
 
 #     try:
-       
+        
 #         client = MongoClient(uri, server_api=ServerApi('1'))
 #         db = client.informatica1
 
-#         Equipos_collection = db.equipos
+
+       
+#         equipos_collection = db.equipos
 
 #         with open(archivo_csv, newline='') as archivo:
 #             reader = csv.DictReader(archivo)
 
 #             for row in reader:
+#                 if "Serial" not in row or not row["Serial"]:
+#                     continue  
+
 #                 equipo = {
 #                     "Serial": row["Serial"],
-#                     "Número de activo": int(row["Número de activo"]),
-#                     "Nombre del equipo": row["Nombre del equipo"],
-#                     "Marca": row["Marca"],
-#                     "Código de ubicación": int(row["Código de ubicación"]),
-#                     "Código responsable": int(row["Código responsable"])
+#                     "Número de activo": int(row.get("Número de activo", 0)),
+#                     "Nombre del equipo": row.get("Nombre del equipo", ""),
+#                     "Marca": row.get("Marca", ""),
+#                     "Código de ubicación": int(row.get("Código de ubicación", 0)),
+#                     "Código responsable": int(row.get("Código responsable", 0))
 #                 }
 
-#                 Equipos_collection.insert_one(equipo)
+#                 equipos_collection.insert_one(equipo)
 
-#             print("Se han ingresado correctamente los equipos de forma automatica.")
+#             print("Se han ingresado los equipos automáticamente.")
 #     except FileNotFoundError:
 #         print("El archivo CSV no existe.")
 #     except Exception as e:
-#         print(f"Error al ingresar equipos de forma automatica: {str(e)}")
+#         print(f"Error al ingresar equipos automáticamente: {str(e)}")
 
 
 
@@ -88,66 +87,6 @@
 #             print("----------")
 #     else:
 #         print("No hay equipos registrados.")
-
-
-
-# def gestionar_responsables():
-#     while True:
-#         print("Menú Responsables")
-#         print("1. Ingresar nuevo responsable")
-#         print("2. Actualizar información de un responsable")
-#         print("3. Buscar un responsable")
-#         print("4. Ver información de todos los responsables")
-#         print("5. Eliminar un responsable")
-#         print("6. Volver al menú principal")
-    
-#         opcion = input("Selecciona una opción: ")
-
-#         if opcion == "1":
-#             ingresar_nuevo_responsable()
-#         elif opcion == "2":
-#             actualizar_responsable()
-#         elif opcion == "3":
-#             buscar_responsable()
-#         elif opcion == "4":
-#             ver_informacion_todosresponsables()
-#         elif opcion == "5":
-#             eliminar_responsable()
-#         elif opcion == "6":
-#             print("¡Gracias por utilizar el sistema!")
-#             break
-#         else:
-#             print("Error, ingrese una opción válida.")
-
-
-# def gestionar_ubicaciones():
-#     while True:
-#      print("Menú Ubicaciones")
-#      print("1. Ingresar nueva ubicación")
-#      print("2. Actualizar información de una ubicación")
-#      print("3. Buscar una ubicación")
-#      print("4. Ver información de todas las ubicaciones")
-#      print("5. Eliminar una ubicación")
-#      print("6. Volver al menú principal")
-    
-#      opcion = input("Selecciona una opción: ")
-
-#      if opcion == "1":
-#             ingresar_nueva_ubicacion()
-#      elif opcion == "2":
-#             actualizar_ubicacion()
-#      elif opcion == "3":
-#             buscar_ubicacion()
-#      elif opcion == "4":
-#             ver_informacion_todasubicaciones()
-#      elif opcion == "5":
-#             eliminar_ubicacion()
-#      elif opcion == "6":
-#             print("¡Gracias por utilizar el sistema!")
-#             break
-#      else:
-#             print("Error, ingrese una opción válida.")
-
 
 
 
