@@ -1,50 +1,55 @@
-def ingresar_equipo_automatico():
-    print("Ingresar equipo de forma automática")
-    equipos_csv = cargar_equipos_desde_csv()
-    for equipo_csv in equipos_csv:
-        equipo_obj = equipo.from_csv(equipo_csv)
-        agregar_equipo(equipo_obj)
-    print("Equipos agregados exitosamente.")
+
+import csv
+
+def ingreso_automatico_equipos():
+    archivo_csv = input("Aqui va el nombre del archivo CSV:")
+    
+    with open(archivo_csv, newline='') as csvfile:
+        equipos_csv = csv.DictReader(csvfile)
+        for equipo in equipos_csv:
+            equipos_collection.insert_one(equipo)
+    
+    print("Ingreso satisfactorio.")
 
 def actualizar_equipo():
-    print("Actualizar la información de un equipo específico")
-    num_activo = int(input("Ingresa el número de activo del equipo a actualizar: "))
-    equipo_obj = obtener_equipo_por_numero_activo(num_activo)
-
-    if equipo_obj:
-        print("Equipo encontrado. Ingresa los datos a actualizar:")
-        try:
-            serial = input(f"Serial ({equipo_obj.serial}): ")
-            nombre = input(f"Nombre del equipo ({equipo_obj.nombre}): ")
-            marca = input(f"Marca ({equipo_obj.marca}): ")
-            cod_ubicacion = int(input(f"Código de ubicación ({equipo_obj.cod_ubicacion}): "))
-            cod_responsable = int(input(f"Código de responsable ({equipo_obj.cod_responsable}): "))
-
-            equipo_obj.serial = serial if serial else equipo_obj.serial
-            equipo_obj.nombre = nombre if nombre else equipo_obj.nombre
-            equipo_obj.marca = marca if marca else equipo_obj.marca
-            equipo_obj.cod_ubicacion = cod_ubicacion if cod_ubicacion else equipo_obj.cod_ubicacion
-            equipo_obj.cod_responsable = cod_responsable if cod_responsable else equipo_obj.cod_responsable
-
-            actualizar_equipo(equipo_obj)
-            print("El equipo se actualizó satisfactoriamente.")
-        except ValueError:
-            print("Error, solo se pueden ingresar valores numéricos.")
+    numero_activo = input("Ingrese el número de activo del equipo a actualizar: ")
+    
+    equipo = equipos_collection.find_one({"numero_activo": numero_activo})
+    if equipo:
+        nuevo_nombre = input("Ingrese el nuevo nombre del equipo: ")
+        nuevo_marca = input("Ingrese la nueva marca: ")
+        nuevo_codigo_ubicacion = input("Ingrese el nuevo código de ubicación: ")
+        nuevo_codigo_responsable = input("Ingrese el nuevo código de responsable: ")
+        
+        nuevo_equipo = {
+            "$set": {
+                "nombre": nuevo_nombre,
+                "marca": nuevo_marca,
+                "codigo_ubicacion": nuevo_codigo_ubicacion,
+                "codigo_responsable": nuevo_codigo_responsable
+            }
+        }
+        
+        equipos_collection.update_one({"numero_activo": numero_activo}, nuevo_equipo)
+        print("Equipo actualizado satisfactoriamente.")
     else:
-        print("Equipo no encontrado.")
+        print("No se encontro el equipo.")
 
-def menu_responsables():
-    pass
 
-def menu_ubicaciones():
-    pass
-
-def main():
-    menu_principal()
-
-if __name__ == "__main__":
-    main()
-
+def ver_equipos():
+    equipos = equipos_collection.find()
+    if equipos.count() > 0:
+        print("Equipos registrados:")
+        for equipo in equipos:
+            print(f"Serial: {equipo['serial']}")
+            print(f"Número de activo: {equipo['numero_activo']}")
+            print(f"Nombre: {equipo['nombre']}")
+            print(f"Marca: {equipo['marca']}")
+            print(f"Código de ubicación: {equipo['codigo_ubicacion']}")
+            print(f"Código de responsable: {equipo['codigo_responsable']}")
+            print("----------")
+    else:
+        print("No hay equipos registrados.")
 
 
 
