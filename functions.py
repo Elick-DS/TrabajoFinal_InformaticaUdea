@@ -67,8 +67,8 @@ def menu_equipos():
             actualizar_equipo()
         elif opcion == "4":
             buscar_equipo()
-        elif opcion == "5":
-            mostrar_equipos()
+        #elif opcion == "5":
+            #mostrar_equipos()
         elif opcion == "6":
             eliminar_equipo()
         elif opcion == "7":
