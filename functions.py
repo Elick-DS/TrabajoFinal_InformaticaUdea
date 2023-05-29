@@ -1,23 +1,5 @@
 from data_base import ingresar_equipo_manual, buscar_equipo,eliminar_equipo, actualizar_equipo, ingresar_equipos_automaticamente
 
-def ingresar_responsable():
-    while True:
-        codigo_responsable = input("Crea el código del responsable del equipo (Debe tener entre 4 y 6 caracteres, sólo números): ")
-        a = len(codigo_responsable)
-        if codigo_responsable.strip() and codigo_responsable.isnumeric() and (a <= 6 and a >= 4) :
-            break
-        else:
-            print("El código del responsable no puede estar vacío, no puede contener caracteres especiales y no puede tener menos de 4 carácteres o más de 6. Inténtelo nuevamente.")
-    while True:
-        nombre = input("Ingrese el nombre del responsable: ")
-        if nombre.strip() and nombre.isalpha():
-            break
-        else:
-            print("El nombre del responsable no puede estar vacío y no puede contener caracteres especiales. Inténtelo nuevamente.")
-    apellido = input("Ingrese el apellido del responsable: ")
-    num_documento = int(input("Ingrese el número del documento de identidad: "))
-    cargo = input("Ingrese el cargo del responsable: ")
-
 def ingresar_ubicacion():
     codigo_ubicacion = int(input("Ingrese el código de ubicación: "))
     nombre_ubicacion = input("Ingrese el nombre de la ubicación: ")
