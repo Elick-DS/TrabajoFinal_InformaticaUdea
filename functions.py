@@ -77,6 +77,44 @@ def menu_equipos():
             print("Error, ingrese una opción válida")
 
 
+ == "5":
+#             eliminar_responsable()
+#         elif opcion == "6":
+#             print("¡Gracias por utilizar el sistema!")
+#             break
+#         else:
+#             print("Error, ingrese una opción válida.")
+
+
+# def gestionar_ubicaciones():
+#     while True:
+#      print("Menú Ubicaciones")
+#      print("1. Ingresar nueva ubicación")
+#      print("2. Actualizar información de una ubicación")
+#      print("3. Buscar una ubicación")
+#      print("4. Ver información de todas las ubicaciones")
+#      print("5. Eliminar una ubicación")
+#      print("6. Volver al menú principal")
+    
+#      opcion = input("Selecciona una opción: ")
+
+#      if opcion == "1":
+#             ingresar_nueva_ubicacion()
+#      elif opcion == "2":
+#             actualizar_ubicacion()
+#      elif opcion == "3":
+#             buscar_ubicacion()
+#      elif opcion == "4":
+#             ver_informacion_todasubicaciones()
+#      elif opcion == "5":
+#             eliminar_ubicacion()
+#      elif opcion == "6":
+#             print("¡Gracias por utilizar el sistema!")
+#             break
+#      else:
+#             print("Error, ingrese una opción válida.")
+
+
 
 
 

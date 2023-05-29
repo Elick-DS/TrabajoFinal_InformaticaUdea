@@ -1,42 +1,42 @@
-import csv
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
+# import csv
+# from pymongo.mongo_client import MongoClient
+# from pymongo.server_api import ServerApi
 
 
 
-uri= "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
+# uri= "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
 
-def ingresar_equipos_automaticamente():
-    print("Ingresar Equipos Automáticamente")
-    archivo_csv = "InventarioIPS.csv"
+# def ingresar_equipos_automaticamente():
+#     print("Ingresar Equipos Automáticamente")
+#     archivo_csv = "InventarioIPS.csv"
 
-    try:
+#     try:
        
-        client = MongoClient(uri, server_api=ServerApi('1'))
-        db = client.informatica1
+#         client = MongoClient(uri, server_api=ServerApi('1'))
+#         db = client.informatica1
 
-        Equipos_collection = db.equipos
+#         Equipos_collection = db.equipos
 
-        with open(archivo_csv, newline='') as archivo:
-            reader = csv.DictReader(archivo)
+#         with open(archivo_csv, newline='') as archivo:
+#             reader = csv.DictReader(archivo)
 
-            for row in reader:
-                equipo = {
-                    "Serial": row["Serial"],
-                    "Número de activo": int(row["Número de activo"]),
-                    "Nombre del equipo": row["Nombre del equipo"],
-                    "Marca": row["Marca"],
-                    "Código de ubicación": int(row["Código de ubicación"]),
-                    "Código responsable": int(row["Código responsable"])
-                }
+#             for row in reader:
+#                 equipo = {
+#                     "Serial": row["Serial"],
+#                     "Número de activo": int(row["Número de activo"]),
+#                     "Nombre del equipo": row["Nombre del equipo"],
+#                     "Marca": row["Marca"],
+#                     "Código de ubicación": int(row["Código de ubicación"]),
+#                     "Código responsable": int(row["Código responsable"])
+#                 }
 
-                Equipos_collection.insert_one(equipo)
+#                 Equipos_collection.insert_one(equipo)
 
-            print("Se han ingresado correctamente los equipos de forma automatica.")
-    except FileNotFoundError:
-        print("El archivo CSV no existe.")
-    except Exception as e:
-        print(f"Error al ingresar equipos de forma automatica: {str(e)}")
+#             print("Se han ingresado correctamente los equipos de forma automatica.")
+#     except FileNotFoundError:
+#         print("El archivo CSV no existe.")
+#     except Exception as e:
+#         print(f"Error al ingresar equipos de forma automatica: {str(e)}")
 
 
 
