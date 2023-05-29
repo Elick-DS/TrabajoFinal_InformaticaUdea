@@ -157,7 +157,7 @@ def actualizar_equipo():
 
 
 def ver_equipos():
-    print("----- Ver Equipos -----")
+    print("Ver Equipos")
 
     try:
         client = MongoClient(uri, server_api=ServerApi('1'))
