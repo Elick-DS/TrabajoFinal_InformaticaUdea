@@ -157,9 +157,9 @@ def actualizar_equipo():
      
          nuevo_equipo = {
             "$set": {
-                "nombre": nuevo_nombre,
+                "nombre_equipo": nuevo_nombre,
                 "marca": nuevo_marca,
-                "codigo_ubicacion": nuevo_bp
+                "ubicacion": nuevo_bp
             }
         }
      
