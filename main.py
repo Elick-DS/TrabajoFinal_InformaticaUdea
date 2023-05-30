@@ -1,5 +1,4 @@
-from functions import  menu_principal
-from data_base import ingresar_equipo_manual
+from functions import menu_principal
 from account import ingresar_responsable
 
 from pymongo.mongo_client import MongoClient
@@ -21,6 +20,8 @@ except Exception as e:
 mydb = client["informatica1"]
 myres = mydb["responsables"]
 
+
+
 print("BIENVENIDO A NUESTRO SISTEMA DE CONTROL DE INVENTARIOS MÉDICOS")
 
 while True:
@@ -39,6 +40,7 @@ while True:
         usuario_encontrado = False
         for a in myres.find({'codigo_responsable': code}):
             print(f"Usuario {a['nombre']}")
+            nombre_en_sesion = a['nombre']
             usuario_encontrado = True
             menu_principal()
             break
@@ -49,6 +51,8 @@ while True:
 
     if opcion == "2":
         ingresar_responsable()
-     
 
+
+     
+    
 
