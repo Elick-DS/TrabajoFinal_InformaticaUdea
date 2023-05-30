@@ -91,79 +91,55 @@ def ingresar_responsable():
 def actualizar_responsable():
     print("Actualizar Responsable ")
 
-    try:
-        
-        client = MongoClient(uri, server_api=ServerApi('1'))
-        db = client.informatica1
-        responsables_collection = db.responsables
+    codigo_responsable = input("Ingrese el código del responsable que se quiere actualizar: ")
 
-        codigo_responsable = int(input("Ingrese el código del responsable a actualizar: "))
+    responsable = myres.find_one({"codigo_responsable": codigo_responsable})
 
-        responsable = responsables_collection.find_one({"Código responsable": codigo_responsable})
+    if responsable:
+        nombre = str(input("Nombre nuevo: "))
+        apellido = str(input("Apellido nuevo: "))
+        documento_identidad = input("Número de documento de identidad nuevo: ")
+        cargo = str(input("Cargo nuevo: "))
 
-        if responsable:
-            nombre = input("Nuevo nombre: ")
-            apellido = input("Nuevo apellido: ")
-            documento_identidad = int(input("Nuevo número de documento de identidad: "))
-            cargo = input("Nuevo cargo: ")
+        nuevo_responsable ={
+            "$set": {
+                "nombre": nombre,
+                "apellido": apellido,
+                "documento": documento_identidad,
+                "cargo": cargo
+            }}
 
-           
-            responsables_collection.update_one(
-                {"Código responsable": codigo_responsable},
-                {"$set": {
-                    "Nombre": nombre,
-                    "Apellido": apellido,
-                    "Número de documento de identidad": documento_identidad,
-                    "Cargo": cargo
-                }}
-            )
+        myres.update_one({"codigo_responsable": codigo_responsable}, nuevo_responsable)
+        print("El Responsable ha sido actualizado de forma satisfactoria.")
+    else:
+        print("No se encontró ningún responsable.")
 
-            print("Responsable actualizado de forma satisfactoria.")
-        else:
-            print("No se encontró ningún responsabñe.")
-
-    except Exception as e:
-        print(f"Error al actualizar responsable: {str(e)}")
 
 
 def buscar_responsable():
-    print("Buscar Responsable")
+    codigo_responsable = input("Ingrese el código del responsable que se desea buscar: ")
+    usuario_encontrado = False
+    for y in myres.find({'codigo_responsable': codigo_responsable}):          
+        print(f"---------------------------------------------")
+        print(f"Código responsable:", y["codigo_responsable"])
+        print(f"Nombre:", y["nombre"])
+        print(f"Apellido:", y["apellido"])
+        print(f"Número de documento de identidad:", y["documento"])
+        print(f"Cargo:", y["cargo"])
+        print(f"---------------------------------------------")
+    if not usuario_encontrado:
+            print("No ha sido posible encontrar el código del responsable .")
 
-    try:
-        client = MongoClient(uri, server_api=ServerApi('1'))
-        db = client.informatica1
-        responsables_collection = db.responsables
-
-        codigo_responsable = int(input("Ingrese el código del responsable a buscar: "))
-
-        
-        responsable = responsables_collection.find_one({"Código responsable": codigo_responsable})
-
-        if responsable:
-            
-            print("---")
-            print("Código responsable:", responsable["Código responsable"])
-            print("Nombre:", responsable["Nombre"])
-            print("Apellido:", responsable["Apellido"])
-            print("Número de documento de identidad:", responsable["Número de documento de identidad"])
-            print("Cargo:", responsable["Cargo"])
-        else:
-            print("No se encontró ningún responsable.")
-
-    except Exception as e:
-        print(f"Error al buscar responsable: {str(e)}")
 
 
 def ver_responsables():
     print("Ver Responsables")
 
     try:
-        
         client = MongoClient(uri, server_api=ServerApi('1'))
         db = client.informatica1
         responsables_collection = db.responsables
 
-        
         responsables = responsables_collection.find()
 
         for responsable in responsables:
@@ -175,26 +151,19 @@ def ver_responsables():
             print("Cargo:", responsable["Cargo"])
 
     except Exception as e:
-        print(f"Error al ver los responsables: {str(e)}")
+        print(f"Ha ocurrido un error al ver los responsables: {str(e)}")
 
 
 def eliminar_responsable():
     print("Eliminar Responsable")
-
-    try:
-        client = MongoClient(uri, server_api=ServerApi('1'))
-        db = client.informatica1
-        responsables_collection = db.responsables
-
     
-        codigo_responsable = int(input("Ingrese el código del responsable a eliminar: "))
-
-        result = responsables_collection.delete_one({"Código responsable": codigo_responsable})
-
-        if result.deleted_count > 0:
-            print("Responsable borrado satisfactoriamente.")
+    while True:
+        codigo_responsable = input("Ingrese el código de responsable que se desea eliminar: ")
+        if codigo_responsable.strip() and codigo_responsable.isnumeric() and (len(codigo_responsable) >= 4 and len(codigo_responsable) <= 6):
+            break
         else:
-            print("No se encontró ningún responsable")
+            print("El número de activo no puede estar vacío, no puede contener caracteres especiales y no puede tener más de 4 caracteres. Inténtelo nuevamente.")
 
-    except Exception as e:
-        print(f"Error al borrar responsable: {str(e)}")
+    delete_result = myres.delete_many({"codigo_responsable": codigo_responsable})
+    print(f"Se eliminaron {delete_result.deleted_count} documentos con el código {codigo_responsable}.")
+   

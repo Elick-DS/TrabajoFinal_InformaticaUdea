@@ -139,14 +139,12 @@ def actualizar_equipo():
                 break
             else:
                 print("La marca del equipo no puede estar vacío, no puede contener caracteres especiales. Inténtelo nuevamente.")
-         nuevo_codigo_responsable = input("Ingrese el nuevo código de responsable: ")
      
          nuevo_equipo = {
             "$set": {
                 "nombre": nuevo_nombre,
                 "marca": nuevo_marca,
-                "codigo_ubicacion": nuevo_bp,
-                "codigo_responsable": nuevo_codigo_responsable
+                "codigo_ubicacion": nuevo_bp
             }
         }
      
@@ -157,7 +155,7 @@ def actualizar_equipo():
 
 
 def ver_equipos():
-    print("----- Ver Equipos -----")
+    print( "Ver Equipos")
 
     try:
         client = MongoClient(uri, server_api=ServerApi('1'))

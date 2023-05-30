@@ -24,23 +24,31 @@ myres = mydb["responsables"]
 print("BIENVENIDO A NUESTRO SISTEMA DE CONTROL DE INVENTARIOS MÉDICOS")
 
 while True:
-    opcion = input("1.Inciar sesión\n2.Crearse una cuenta\nOpción:")
-    if opcion.isnumeric() and opcion == "1":
-        break
-    elif opcion.isnumeric() and opcion == "2":
-        break
-    else:
-        print("Ingresa una opción correcta")
+    while True:
+        opcion = input("1.Iniciar sesión\n2.Crearse una cuenta\nOpción:")
+        if opcion.isnumeric() and opcion == "1":
+            break
+        elif opcion.isnumeric() and opcion == "2":
+            break
+        else:
+            print("Ingresa una opción correcta")
 
-if opcion == "1":
-    code = input("Ingresa el número de activo: ")
-    for y in myres.find({'numero_activo': code}):
-        print(f"Usuario {y['nombre']}")
-        menu_principal()
-        break
 
-elif opcion == "2":
-     ingresar_responsable()
+    if opcion == "1":
+        code = input("Ingresa el código de responsable: ")
+        usuario_encontrado = False
+        for a in myres.find({'codigo_responsable': code}):
+            print(f"Usuario {a['nombre']}")
+            usuario_encontrado = True
+            menu_principal()
+            break
+        
+        if not usuario_encontrado:
+            print("El código de responsable no se encuentra en la base de datos, creese una cuenta o verifique que ha escrito bien su código.")
+
+
+    if opcion == "2":
+        ingresar_responsable()
      
 
 

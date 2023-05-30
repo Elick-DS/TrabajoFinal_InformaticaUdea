@@ -24,7 +24,7 @@ def menu_principal():
             ingresar_ubicacion()
         elif opcion == "4":
             print("¡Gracias por utilizar el sistema!")
-            break
+            exit()
         else:
             print("Error, ingrese una opción válida.")
 
@@ -82,7 +82,7 @@ def menu_equipos():
 #      elif opcion == "3":
 #             buscar_ubicacion()
 #      elif opcion == "4":
-#             ver_informacion_todasubicaciones()
+#             ver_ubicaciones()
 #      elif opcion == "5":
 #             eliminar_ubicacion()
 #      elif opcion == "6":
