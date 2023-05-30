@@ -92,37 +92,48 @@ def eliminar_equipo():
     print(f"Se eliminaron {delete_result.deleted_count} documentos con el número de activo {numero_activo}.")
 
 
+ultima_posicion = 0
 def ingresar_equipos_automaticamente():
-    print("Ingresar Equipos Automáticamente")
+    global ultima_posicion
+    print("Ingresar Equipo Automáticamente")
     archivo_csv = "InventarioIPS.csv"
 
     try:
-       
         client = MongoClient(uri, server_api=ServerApi('1'))
         db = client.informatica1
-
-        Equipos_collection = db.equipos
+        Equipos_collection = db.Equipos
 
         with open(archivo_csv, newline='') as archivo:
-            reader = csv.DictReader(archivo)
+            Equipos = csv.DictReader(archivo, delimiter=';')
 
-            for row in reader:
-                equipo = {
-                    "Serial": row["Serial"],
-                    "Número de activo": int(row["Número de activo"]),
-                    "Nombre del equipo": row["Nombre del equipo"],
-                    "Marca": row["Marca"],
-                    "Código de ubicación": int(row["Código de ubicación"]),
-                    "Código responsable": int(row["Código responsable"])
-                }
+            for _ in range(ultima_posicion):
+                next(Equipos)
 
-                Equipos_collection.insert_one(equipo)
+            Equipo = next(Equipos, None)
+            if Equipo:
 
-            print("Se han ingresado correctamente los equipos de forma automatica.")
+                Equipo_doc = {
+                "Serial": Equipo["Serial"],
+                "Numero de activo": int(Equipo["Numero de activo"]),
+                "Nombre del equipo": Equipo["Nombre del equipo"],
+                "Codigo de ubicación": Equipo["Codigo de ubicacion"],
+                "Marca": Equipo["Marca"],
+                "Codigo responsable": int(Equipo["Codigo responsable"])
+            }
+
+    
+                Equipos_collection.insert_one(Equipo_doc)
+
+                print(f"Se ha ingresado el equipo automáticamente: {Equipo['Nombre del equipo']}")
+
+                ultima_posicion += 1
+            else:
+                print("No hay más equipos para ingresar automáticamente.")
+
     except FileNotFoundError:
         print("El archivo CSV no existe.")
     except Exception as e:
-        print(f"Error al ingresar equipos de forma automatica: {str(e)}")
+        print(f"Error al ingresar equipo automáticamente: {str(e)}")
 
 def actualizar_equipo():
      numero_activo = input("Ingrese el número de activo del equipo a actualizar: ")
@@ -155,7 +166,7 @@ def actualizar_equipo():
 
 
 def ver_equipos():
-    print("----- Ver Equipos -----")
+    print("Ver Equipos")
 
     try:
         client = MongoClient(uri, server_api=ServerApi('1'))
@@ -165,13 +176,12 @@ def ver_equipos():
         Equipos = Equipos_collection.find()
 
         for Equipo in Equipos:
-            print("---")
             print("Serial:", Equipo["Serial"])
-            print("Número de activo:", Equipo["Número de activo"])
+            print("Numero de activo:", Equipo["Numero de activo"])
             print("Nombre del equipo:", Equipo["Nombre del equipo"])
+            print("Codigo de ubicación:", Equipo["Codigo de ubicación"])
             print("Marca:", Equipo["Marca"])
-            print("Código de ubicación:", Equipo["Código de ubicación"])
-            print("Código responsable:", Equipo["Código responsable"])
+            print("Codigo responsable:", Equipo["Codigo responsable"])
 
     except Exception as e:
         print(f"Error al ver los equipos: {str(e)}")
