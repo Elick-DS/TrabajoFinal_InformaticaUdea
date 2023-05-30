@@ -115,18 +115,18 @@ def ingresar_equipos_automaticamente():
             if Equipo:
 
                 Equipo_doc = {
-                "Serial": Equipo["Serial"],
-                "Numero de activo": int(Equipo["Numero de activo"]),
-                "Nombre del equipo": Equipo["Nombre del equipo"],
-                "Codigo de ubicación": Equipo["Codigo de ubicacion"],
-                "Marca": Equipo["Marca"],
-                "Codigo responsable": int(Equipo["Codigo responsable"])
+                "serial": Equipo["serial"],
+                "numero_activo": Equipo["numero_activo"],
+                "nombre_equipo": Equipo["nombre_equipo"],
+                "marca": Equipo["marca"],
+                "ubicacion": Equipo["ubicacion"],
+                "codigo_responsable": Equipo["codigo_responsable"]
             }
 
     
                 Equipos_collection.insert_one(Equipo_doc)
 
-                print(f"Se ha ingresado el equipo automáticamente: {Equipo['Nombre del equipo']}")
+                print(f"Se ha ingresado el equipo automáticamente: {Equipo['nombre_equipo']}")
 
                 ultima_posicion += 1
             else:
@@ -180,12 +180,12 @@ def ver_equipos():
         Equipos = Equipos_collection.find()
 
         for Equipo in Equipos:
-            print("Serial:", Equipo["Serial"])
-            print("Numero de activo:", Equipo["Numero de activo"])
-            print("Nombre del equipo:", Equipo["Nombre del equipo"])
-            print("Codigo de ubicación:", Equipo["Codigo de ubicación"])
-            print("Marca:", Equipo["Marca"])
-            print("Codigo responsable:", Equipo["Codigo responsable"])
+            print("serial:", Equipo["serial"])
+            print("numero_activo:", Equipo["numero_activo"])
+            print("nombre_equipo:", Equipo["nombre_equipo"])
+            print("marca:", Equipo["marca"])
+            print("ubicacion:", Equipo["ubicacion"])
+            print("codigo_responsable:", Equipo["codigo_responsable"])
 
     except Exception as e:
         print(f"Error al ver los equipos: {str(e)}")
