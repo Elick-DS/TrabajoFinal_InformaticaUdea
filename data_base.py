@@ -1,7 +1,6 @@
 import csv
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-#from functions import input_no_vacio
 
 uri = "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
 
@@ -17,7 +16,7 @@ except Exception as e:
 
 mydb = client["informatica1"]
 mycol = mydb["Equipos"]
-
+myres = mydb["responsables"]
 
 def ingresar_equipo_manual():
     while True:
@@ -59,6 +58,9 @@ def ingresar_equipo_manual():
             break
         else:
             print("El código del responsable no puede estar vacío, no puede contener caracteres especiales y no puede tener menos de 4 carácteres o más de 6. Inténtelo nuevamente.")
+    
+   
+
     nuevo_equipo = {"serial": serial,"numero_activo": numero_activo,"nombre_equipo": nombre_equipo,"marca": marca,"ubicacion":bp,"codigo_responsable": codigo_responsable}
 
     x=mycol.insert_one(nuevo_equipo)
@@ -134,6 +136,8 @@ def ingresar_equipos_automaticamente():
         print("El archivo CSV no existe.")
     except Exception as e:
         print(f"Error al ingresar equipo automáticamente: {str(e)}")
+
+
 
 def actualizar_equipo():
      numero_activo = input("Ingrese el número de activo del equipo a actualizar: ")
