@@ -43,7 +43,7 @@ def menu_equipos():
         opcion = input("Selecciona una opción: ")
 
         if opcion == "1":
-            ingresar_equipo_manual(code)
+            ingresar_equipo_manual()
         elif opcion == "2":
             ingresar_equipos_automaticamente()
         elif opcion == "3":

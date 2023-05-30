@@ -1,8 +1,6 @@
 import csv
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-#from Hola123 import validador_codigo_responsable
-#from functions import input_no_vacio
 
 uri = "mongodb+srv://informatica1:bio123@clusterinfo1.vzk1bse.mongodb.net/?retryWrites=true&w=majority"
 
@@ -20,7 +18,7 @@ mydb = client["informatica1"]
 mycol = mydb["Equipos"]
 myres = mydb["responsables"]
 
-def ingresar_equipo_manual(code):
+def ingresar_equipo_manual():
     while True:
         serial = input("Ingrese el número de serie: ")
         if serial.strip() and serial.isalnum() and len(serial) == 10:
@@ -61,7 +59,7 @@ def ingresar_equipo_manual(code):
         else:
             print("El código del responsable no puede estar vacío, no puede contener caracteres especiales y no puede tener menos de 4 carácteres o más de 6. Inténtelo nuevamente.")
     
-    print(code)
+   
 
     nuevo_equipo = {"serial": serial,"numero_activo": numero_activo,"nombre_equipo": nombre_equipo,"marca": marca,"ubicacion":bp,"codigo_responsable": codigo_responsable}
 
